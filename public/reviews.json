@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "name": "Aisha Rahman",
+    "rating": 5,
+    "text": "Amazing experience! The quality was top-notch and delivery was super fast.",
+    "location": "Dhaka, Bangladesh",
+    "photoURL": "https://randomuser.me/api/portraits/men/34.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Rafiq Hasan",
+    "rating": 4,
+    "text": "Good value for the price. I’m happy with my purchase overall.",
+    "location": "Chittagong, Bangladesh",
+    "photoURL": "https://randomuser.me/api/portraits/men/34.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Mita Sultana",
+    "rating": 5,
+    "text": "Excellent customer service! They responded quickly and helped me with my order.",
+    "location": "Sylhet, Bangladesh",
+    "photoURL": "https://randomuser.me/api/portraits/men/34.jpg"
+  },
+  {
+    "id": 4,
+    "name": "Tanvir Khan",
+    "rating": 3,
+    "text": "Product was okay, but packaging could be improved.",
+    "location": "Khulna, Bangladesh",
+    "photoURL": "https://randomuser.me/api/portraits/men/34.jpg"
+  },
+  {
+    "id": 5,
+    "name": "Nasima Akter",
+    "rating": 5,
+    "text": "Absolutely love it! Will definitely recommend to my friends.",
+    "location": "Rajshahi, Bangladesh",
+    "photoURL": "https://randomuser.me/api/portraits/men/34.jpg"
+  }
+]
