@@ -11,8 +11,10 @@ const CustomerReviews = ({ reviewPromise }) => {
   console.log(reviews);
 
   return (
-    <div>
-      <h2 className="text-3xl">Reviews</h2>
+    <div className="mb-10 mt-5">
+      <h2 className="text-4xl text-center font-semibold text-secondary">
+        Customer Reviews
+      </h2>
       <div>
         <>
           <Swiper
