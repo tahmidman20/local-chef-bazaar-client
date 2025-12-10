@@ -1,19 +1,31 @@
 import React from "react";
 import { GrHome } from "react-icons/gr";
-import { NavLink } from "react-router";
+import { Link, NavLink } from "react-router";
+import useAuth from "../../../hooks/useAuth";
 
 const Navbar = () => {
+  const { user, logOut } = useAuth();
+  const handleLogOut = () => {
+    logOut()
+      .then()
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  console.log(user?.photoURL);
   const links = (
     <>
       <li>
         <NavLink to="/">Home</NavLink>
       </li>
       <li>
-        <NavLink to="/">Meals</NavLink>
+        <NavLink to="/meals">Meals</NavLink>
       </li>
-      <li>
-        <NavLink to="/">Dashboard</NavLink>
-      </li>
+      {user && (
+        <li>
+          <NavLink to="/">Dashboard</NavLink>
+        </li>
+      )}
     </>
   );
   return (
@@ -55,13 +67,22 @@ const Navbar = () => {
           <ul className="menu menu-horizontal px-1">{links}</ul>
         </div>
         <div className="navbar-end">
-          <a className="btn btn-primary">Login</a>
+          {user ? (
+            <a onClick={handleLogOut} className="btn btn-secondary">
+              Log Out
+            </a>
+          ) : (
+            <Link to="/login" className="btn btn-secondary">
+              Login
+            </Link>
+          )}
         </div>
         {/* image */}
         <div>
           <div className="w-11 h-11 rounded-full overflow-hidden mb-2 ring ring-primary mx-3">
             <img
               src={
+                user?.photoURL ||
                 "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
               }
               alt="User Profile Avatar"

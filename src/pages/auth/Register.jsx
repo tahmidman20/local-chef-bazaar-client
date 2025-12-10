@@ -1,7 +1,8 @@
 import React from "react";
 import { useForm, Watch } from "react-hook-form";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import useAuth from "../../hooks/useAuth";
+import axios from "axios";
 
 const Register = () => {
   const {
@@ -11,13 +12,37 @@ const Register = () => {
     formState: { errors },
   } = useForm();
 
-  const { registerUser } = useAuth();
+  const { registerUser, updateUserProfile } = useAuth();
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const handleRegistration = (data) => {
-    console.log("After register", data);
+    console.log("After register", data.photo[0]);
+    const profileImage = data.photo[0];
     registerUser(data.email, data.password, data.name)
       .then((result) => {
         console.log(result);
+        navigate(location?.state || "/");
+        //store image and get url
+        const formData = new FormData();
+        formData.append("image", profileImage);
+        const imageApiURL = `https://api.imgbb.com/1/upload?key=${
+          import.meta.env.VITE_image_host_key
+        }`;
+
+        axios.post(imageApiURL, formData).then((res) => {
+          console.log("after image upload", res);
+          // update user profile
+          const userProfile = {
+            displayName: data.name,
+            photoURL: res.data.data.url,
+          };
+          updateUserProfile(userProfile)
+            .then(() => {
+              console.log("user profile updated");
+            })
+            .catch((error) => console.log(error));
+        });
       })
       .catch((error) => {
         console.log(error);
@@ -55,6 +80,30 @@ const Register = () => {
           />
           {errors.email?.type === "required" && (
             <p className="text-red-500">Email is required</p>
+          )}
+          {/* image */}
+          <label className="label">Image</label>
+          <input
+            type="file"
+            {...register("photo", { required: true })}
+            className="input w-full file-input"
+            placeholder="Your Image"
+          />
+
+          {errors.photo?.type === "required" && (
+            <p className="text-red-500">Photo is required</p>
+          )}
+
+          {/* address */}
+          <label className="label">Address</label>
+          <input
+            type="text"
+            {...register("address", { required: true })}
+            className="input w-full"
+            placeholder="Your Address"
+          />
+          {errors.address?.type === "required" && (
+            <p className="text-red-500">Address is required</p>
           )}
 
           {/* password */}

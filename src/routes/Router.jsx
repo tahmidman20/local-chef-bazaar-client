@@ -4,6 +4,9 @@ import Home from "../pages/Home/Home";
 import AuthLayout from "../layouts/AuthLayout";
 import Login from "../pages/auth/Login";
 import Register from "../pages/auth/Register";
+import Meals from "../pages/meals/Meals";
+import PrivateRoute from "./PrivateRoute";
+import ViewMealDetails from "../pages/meals/ViewMealDetails";
 
 export const router = createBrowserRouter([
   {
@@ -13,6 +16,18 @@ export const router = createBrowserRouter([
       {
         index: true,
         Component: Home,
+      },
+      {
+        path: "meals",
+        Component: Meals,
+      },
+      {
+        path: "meal-details",
+        element: (
+          <PrivateRoute>
+            <ViewMealDetails></ViewMealDetails>
+          </PrivateRoute>
+        ),
       },
     ],
   },

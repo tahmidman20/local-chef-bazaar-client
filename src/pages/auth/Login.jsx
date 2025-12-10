@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import useAuth from "../../hooks/useAuth";
 
 const Login = () => {
@@ -10,11 +10,14 @@ const Login = () => {
     formState: { errors },
   } = useForm();
   const { singInUser } = useAuth();
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const handleLogin = (data) => {
     console.log("form data", data);
     singInUser(data.email, data.password).then((result) => {
       console.log(result);
+      navigate(location?.state || "/");
     });
   };
   return (

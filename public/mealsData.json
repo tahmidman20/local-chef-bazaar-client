@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "chefName": "Chef John",
+    "chefId": "C101",
+    "foodImage": "https://via.placeholder.com/150",
+    "foodName": "Grilled Chicken",
+    "price": 12.99,
+    "rating": 4.5,
+    "deliveryArea": "Dhaka"
+  },
+  {
+    "id": 2,
+    "chefName": "Chef Lisa",
+    "chefId": "C102",
+    "foodImage": "https://via.placeholder.com/150",
+    "foodName": "Vegan Salad",
+    "price": 9.99,
+    "rating": 4.8,
+    "deliveryArea": "Chittagong"
+  },
+  {
+    "id": 3,
+    "chefName": "Chef Mark",
+    "chefId": "C103",
+    "foodImage": "https://via.placeholder.com/150",
+    "foodName": "Beef Steak",
+    "price": 15.5,
+    "rating": 4.6,
+    "deliveryArea": "Khulna"
+  },
+  {
+    "id": 4,
+    "chefName": "Chef Anna",
+    "chefId": "C104",
+    "foodImage": "https://via.placeholder.com/150",
+    "foodName": "Pasta Carbonara",
+    "price": 11.99,
+    "rating": 4.3,
+    "deliveryArea": "Sylhet"
+  },
+  {
+    "id": 5,
+    "chefName": "Chef Sam",
+    "chefId": "C105",
+    "foodImage": "https://via.placeholder.com/150",
+    "foodName": "Fish Curry",
+    "price": 10.5,
+    "rating": 4.7,
+    "deliveryArea": "Barisal"
+  },
+  {
+    "id": 6,
+    "chefName": "Chef Mia",
+    "chefId": "C106",
+    "foodImage": "https://via.placeholder.com/150",
+    "foodName": "Chicken Biryani",
+    "price": 13.75,
+    "rating": 4.9,
+    "deliveryArea": "Dhaka"
+  },
+  {
+    "id": 7,
+    "chefName": "Chef Alex",
+    "chefId": "C107",
+    "foodImage": "https://via.placeholder.com/150",
+    "foodName": "Veggie Pizza",
+    "price": 8.99,
+    "rating": 4.2,
+    "deliveryArea": "Chittagong"
+  },
+  {
+    "id": 8,
+    "chefName": "Chef Nora",
+    "chefId": "C108",
+    "foodImage": "https://via.placeholder.com/150",
+    "foodName": "Lamb Kebab",
+    "price": 14.25,
+    "rating": 4.6,
+    "deliveryArea": "Rajshahi"
+  },
+  {
+    "id": 9,
+    "chefName": "Chef Liam",
+    "chefId": "C109",
+    "foodImage": "https://via.placeholder.com/150",
+    "foodName": "Shrimp Fried Rice",
+    "price": 12.5,
+    "rating": 4.4,
+    "deliveryArea": "Mymensingh"
+  }
+]
