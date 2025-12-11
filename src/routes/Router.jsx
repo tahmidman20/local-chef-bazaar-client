@@ -7,6 +7,8 @@ import Register from "../pages/auth/Register";
 import Meals from "../pages/meals/Meals";
 import PrivateRoute from "./PrivateRoute";
 import ViewMealDetails from "../pages/meals/ViewMealDetails";
+import DashboardLayout from "../layouts/DashboardLayout";
+import AddMeals from "../pages/Dashboard/AddMeals";
 
 export const router = createBrowserRouter([
   {
@@ -42,6 +44,16 @@ export const router = createBrowserRouter([
       {
         path: "register",
         Component: Register,
+      },
+    ],
+  },
+  {
+    path: "dashboard",
+    element: <DashboardLayout></DashboardLayout>,
+    children: [
+      {
+        path: "add-meal",
+        Component: AddMeals,
       },
     ],
   },

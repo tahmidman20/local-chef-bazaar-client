@@ -35,7 +35,7 @@ const Register = () => {
           // update user profile
           const userProfile = {
             displayName: data.name,
-            photoURL: res.data.data.url,
+            photoURL: res.data.data.display_url,
           };
           updateUserProfile(userProfile)
             .then(() => {
