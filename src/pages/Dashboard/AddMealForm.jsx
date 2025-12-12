@@ -2,13 +2,43 @@ import React from "react";
 import useAuth from "../../hooks/useAuth";
 import { useForm } from "react-hook-form";
 import { imageUpload } from "../../utlis";
+import axios from "axios";
+import { useMutation } from "@tanstack/react-query";
+import toast from "react-hot-toast";
+import Loader from "../../components/Loader";
 
 const AddMealForm = () => {
   const { user } = useAuth();
+
+  //useMutation hooks
+  const {
+    isPending,
+    isError,
+    mutateAsync,
+    reset: mutationReset,
+  } = useMutation({
+    mutationFn: async (payload) =>
+      await axios.post(`${import.meta.env.VITE_API_URL}/meals`, payload),
+    onSuccess: (data) => {
+      console.log(data);
+      toast.success("Meal added successfully");
+      mutationReset();
+      //query key
+    },
+    onError: (error) => {
+      console.log(error);
+    },
+    onMutate: (payload) => {
+      console.log("post this data", payload);
+    },
+    retry: 3,
+  });
+
   //react hook form
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
@@ -26,21 +56,30 @@ const AddMealForm = () => {
       foodImage,
     } = data;
     const imageFile = foodImage[0];
-    const imageUrl = await imageUpload(imageFile);
-    const mealData = {
-      image: imageUrl,
-      foodName,
-      chefName,
-      chefExperience,
-      chefId,
-      estimatedDeliveryTime,
-      ingredients,
-      price: Number(price),
-      rating: Number(rating),
-      userEmail,
-    };
-    console.table(mealData);
+
+    try {
+      const imageUrl = await imageUpload(imageFile);
+      const mealData = {
+        image: imageUrl,
+        foodName,
+        chefName,
+        chefExperience,
+        chefId,
+        estimatedDeliveryTime,
+        ingredients,
+        price: Number(price),
+        rating: Number(rating),
+        userEmail,
+      };
+
+      await mutateAsync(mealData);
+      reset();
+    } catch (err) {
+      console.log(err);
+    }
   };
+  if (isPending) return <Loader></Loader>;
+  if (isError) return <p>Error 404</p>;
 
   return (
     <div className="max-w-3xl mx-auto bg-white shadow-lg rounded-xl p-8 mt-10">
