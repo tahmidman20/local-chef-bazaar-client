@@ -1,18 +1,7 @@
 import { Link } from "react-router";
 
 const MealCard = ({ meal }) => {
-  const {
-    chefName,
-    chefId,
-
-    foodName,
-    image,
-
-    price,
-    rating,
-
-    _id,
-  } = meal;
+  const { chefName, chefId, foodName, image, price, rating, _id } = meal;
   console.log(meal);
   return (
     <div className="p-6">

@@ -15,7 +15,7 @@ const Navbar = () => {
         console.log(error);
       });
   };
-  console.log(user?.photoURL);
+  // console.log(user?.photoURL);
   const links = (
     <>
       <li>
