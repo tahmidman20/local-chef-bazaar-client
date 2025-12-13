@@ -2,6 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router";
 import useAuth from "../../hooks/useAuth";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const {
@@ -15,6 +16,7 @@ const Login = () => {
 
   const handleLogin = (data) => {
     console.log("form data", data);
+    toast.success("login successful");
     singInUser(data.email, data.password).then((result) => {
       console.log(result);
       navigate(location?.state || "/");

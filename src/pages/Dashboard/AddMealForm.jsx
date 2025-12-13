@@ -4,8 +4,9 @@ import { useForm } from "react-hook-form";
 import { imageUpload } from "../../utlis";
 import axios from "axios";
 import { useMutation } from "@tanstack/react-query";
-import toast from "react-hot-toast";
+
 import Loader from "../../components/Loader";
+import { toast } from "react-toastify";
 
 const AddMealForm = () => {
   const { user } = useAuth();

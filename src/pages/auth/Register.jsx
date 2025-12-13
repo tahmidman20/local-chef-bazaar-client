@@ -3,6 +3,7 @@ import { useForm, Watch } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router";
 import useAuth from "../../hooks/useAuth";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const Register = () => {
   const {
@@ -22,6 +23,7 @@ const Register = () => {
     registerUser(data.email, data.password, data.name)
       .then((result) => {
         console.log(result);
+        toast.success("Registration successful");
         navigate(location?.state || "/");
         //store image and get url
         const formData = new FormData();

@@ -2,11 +2,14 @@ import React from "react";
 import { GrHome } from "react-icons/gr";
 import { Link, NavLink } from "react-router";
 import useAuth from "../../../hooks/useAuth";
+import { toast } from "react-toastify";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
   const handleLogOut = () => {
-    logOut()
+    logOut();
+    toast
+      .success("Logout successful")
       .then()
       .catch((error) => {
         console.log(error);
