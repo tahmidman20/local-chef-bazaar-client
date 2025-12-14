@@ -9,6 +9,8 @@ import PrivateRoute from "./PrivateRoute";
 import ViewMealDetails from "../pages/meals/ViewMealDetails";
 import DashboardLayout from "../layouts/DashboardLayout";
 import AddMeals from "../pages/Dashboard/AddMeals";
+import OrderNow from "../pages/OrderNow";
+import MyOrder from "../pages/Dashboard/MyOrder";
 
 export const router = createBrowserRouter([
   {
@@ -28,6 +30,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <ViewMealDetails></ViewMealDetails>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "order-now/:id",
+        element: (
+          <PrivateRoute>
+            <OrderNow></OrderNow>
           </PrivateRoute>
         ),
       },
@@ -54,6 +64,10 @@ export const router = createBrowserRouter([
       {
         path: "add-meal",
         Component: AddMeals,
+      },
+      {
+        path: "my-orders",
+        Component: MyOrder,
       },
     ],
   },

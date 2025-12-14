@@ -92,12 +92,12 @@ const DashboardLayout = () => {
             </li>
             <li>
               <NavLink
-                to="/dashboard/payment-history"
+                to="/dashboard/my-orders"
                 className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip="Payment History"
+                data-tip="My Orders"
               >
-                <FaCreditCard />{" "}
-                <span className="is-drawer-close:hidden">Payment History</span>
+                <MdDeliveryDining />{" "}
+                <span className="is-drawer-close:hidden">My Orders</span>
               </NavLink>
             </li>
 

@@ -25,7 +25,7 @@ const ViewMealDetails = () => {
   const {
     data: meal = {},
     isLoading,
-    refetch,
+    // refetch,
   } = useQuery({
     queryKey: ["meal", id],
     queryFn: async () => {
@@ -64,7 +64,7 @@ const ViewMealDetails = () => {
           {/* Rating */}
           <div className="flex items-center gap-2 mt-3">
             <Star className="text-yellow-400 fill-yellow-400" size={22} />
-            <span className="font-semibold text-gray-700">{rating / 5}</span>
+            <span className="font-semibold text-gray-700">{rating}/5</span>
           </div>
 
           {/* Chef Info */}
@@ -109,7 +109,7 @@ const ViewMealDetails = () => {
 
           {/* Button */}
           <div className="mt-8 text-center">
-            <Link to="">
+            <Link to={`/order-now/${meal._id}`}>
               <button className="btn btn-secondary px-8 text-lg">
                 Order Now
               </button>
