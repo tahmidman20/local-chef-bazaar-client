@@ -1,5 +1,5 @@
 import React from "react";
-import Banner from "./Banner ";
+import Banner from "../Home/Banner ";
 import CustomerReviews from "./CustomerReviews";
 
 const reviewPromise = fetch("/reviews.json").then((res) => res.json());

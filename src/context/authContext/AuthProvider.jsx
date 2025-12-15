@@ -11,7 +11,7 @@ import { auth } from "../../firebase/firebase.init";
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(null);
+  const [loading, setLoading] = useState(true);
   const registerUser = (email, password) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
@@ -23,7 +23,6 @@ const AuthProvider = ({ children }) => {
   };
 
   const logOut = () => {
-    setLoading(true);
     return signOut(auth);
   };
 
@@ -37,9 +36,7 @@ const AuthProvider = ({ children }) => {
       setUser(currentUser);
       setLoading(false);
     });
-    return () => {
-      unSubscribe();
-    };
+    return () => unSubscribe();
   }, []);
 
   const authInfo = {

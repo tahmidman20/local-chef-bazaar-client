@@ -47,6 +47,7 @@ const OrderNow = () => {
       quantity: Number(data.quantity),
       totalPrice: Number(totalPrice),
       chefId: meal.chefId,
+      chefName: meal.chefName,
       userEmail: user.email,
       userAddress: data.userAddress,
       orderStatus: "pending",

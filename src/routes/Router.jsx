@@ -10,7 +10,9 @@ import ViewMealDetails from "../pages/meals/ViewMealDetails";
 import DashboardLayout from "../layouts/DashboardLayout";
 import AddMeals from "../pages/Dashboard/AddMeals";
 import OrderNow from "../pages/OrderNow";
-import MyOrder from "../pages/Dashboard/MyOrder";
+import MyOrders from "../pages/Dashboard/MyOrders";
+import PaymentSuccess from "../pages/Dashboard/payment/PaymentSuccess";
+import PaymentCancel from "../pages/Dashboard/payment/PaymentCancel";
 
 export const router = createBrowserRouter([
   {
@@ -59,15 +61,31 @@ export const router = createBrowserRouter([
   },
   {
     path: "dashboard",
-    element: <DashboardLayout></DashboardLayout>,
+    element: (
+      <PrivateRoute>
+        <DashboardLayout></DashboardLayout>
+      </PrivateRoute>
+    ),
     children: [
       {
         path: "add-meal",
         Component: AddMeals,
       },
       {
+        path: "payment-success",
+        Component: PaymentSuccess,
+      },
+      {
+        path: "payment-cancelled",
+        Component: PaymentCancel,
+      },
+      {
         path: "my-orders",
-        Component: MyOrder,
+        element: (
+          <PrivateRoute>
+            <MyOrders />
+          </PrivateRoute>
+        ),
       },
     ],
   },

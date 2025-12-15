@@ -1,6 +1,7 @@
 import React from "react";
 import useAuth from "../hooks/useAuth";
 import { Navigate, useLocation } from "react-router";
+import Loader from "../components/Loader";
 
 const PrivateRoute = ({ children }) => {
   const { user, loading } = useAuth();
@@ -9,7 +10,7 @@ const PrivateRoute = ({ children }) => {
   if (loading) {
     return (
       <div className="text-center items-center">
-        <span className="loading loading-infinity loading-xl"></span>
+        <Loader></Loader>
       </div>
     );
   }
