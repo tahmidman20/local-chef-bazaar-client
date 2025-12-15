@@ -12,7 +12,7 @@ const Footer = () => {
         {/* Brand Info */}
         <div>
           <h2 className="text-2xl font-bold text-white mb-4">
-            Local<span className="text-[#3BB77E]">Chef</span>Bazaar
+            Local<span className="text-secondary">Chef</span>Bazaar
           </h2>
           <p className="text-sm leading-relaxed">
             LocalChefBazaar connects local home chefs with food lovers,
@@ -21,16 +21,16 @@ const Footer = () => {
 
           {/* Social Icons */}
           <div className="flex gap-4 mt-5">
-            <a className="hover:text-[#3BB77E]" href="#">
+            <a className="hover:text-secondary" href="#">
               <FaFacebookF />
             </a>
-            <a className="hover:text-[#3BB77E]" href="#">
+            <a className="hover:text-secondary" href="#">
               <FaInstagram />
             </a>
-            <a className="hover:text-[#3BB77E]" href="#">
+            <a className="hover:text-secondary" href="#">
               <FaTwitter />
             </a>
-            <a className="hover:text-[#3BB77E]" href="#">
+            <a className="hover:text-secondary" href="#">
               <FaLinkedinIn />
             </a>
           </div>
