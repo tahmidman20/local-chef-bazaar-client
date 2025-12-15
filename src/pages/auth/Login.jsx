@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router";
 import useAuth from "../../hooks/useAuth";
 import { toast } from "react-toastify";
+import { saveOrUpdateUser } from "../../utlis";
 
 const Login = () => {
   const {
@@ -16,11 +17,23 @@ const Login = () => {
 
   const handleLogin = (data) => {
     console.log("form data", data);
-    toast.success("login successful");
-    singInUser(data.email, data.password).then((result) => {
-      console.log(result);
-      navigate(location?.state || "/");
-    });
+    singInUser(data.email, data.password)
+      .then((result) => {
+        const user = result.user;
+        const dbUser = {
+          name: user.displayName,
+          email: user.email,
+          photoURL: user.photoURL,
+        };
+
+        saveOrUpdateUser(dbUser).then(() => {
+          toast.success("Login successful");
+          navigate(location?.state || "/");
+        });
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
   };
   return (
     <div className="max-w-3xl mx-auto mt-6 bg-gray-100 p-10">

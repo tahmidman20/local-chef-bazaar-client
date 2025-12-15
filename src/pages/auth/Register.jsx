@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router";
 import useAuth from "../../hooks/useAuth";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { saveOrUpdateUser } from "../../utlis";
 
 const Register = () => {
   const {
@@ -39,9 +40,19 @@ const Register = () => {
             displayName: data.name,
             photoURL: res.data.data.display_url,
           };
+
           updateUserProfile(userProfile)
             .then(() => {
-              console.log("user profile updated");
+              const dbUser = {
+                name: data.name,
+                email: data.email,
+                photoURL: res.data.data.display_url,
+                address: data.address,
+              };
+
+              saveOrUpdateUser(dbUser).then(() => {
+                navigate(location?.state || "/");
+              });
             })
             .catch((error) => console.log(error));
         });
