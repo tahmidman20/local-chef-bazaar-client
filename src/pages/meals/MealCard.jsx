@@ -4,7 +4,7 @@ const MealCard = ({ meal }) => {
   const { chefName, chefId, foodName, image, price, rating, _id } = meal;
   console.log(meal);
   return (
-    <div className="p-6">
+    <div className="p-6 hover:scale-105 transition-transform duration-300">
       <div className="">
         <div
           key={meal._id}

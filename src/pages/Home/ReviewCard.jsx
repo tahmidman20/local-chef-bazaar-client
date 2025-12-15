@@ -19,7 +19,7 @@ const ReviewCard = ({ review }) => {
   };
   return (
     <div className="max-w-md mx-auto p-4">
-      <div className="bg-white p-6 rounded-3xl shadow-xl border border-gray-100 hover:shadow-2xl transition-shadow duration-300">
+      <div className="bg-base-200 p-6 rounded-3xl shadow-xl border border-gray-100 hover:shadow-2xl transition-shadow duration-300">
         <div className="text-4xl text-cyan-600 mb-4">
           <BsQuote />
         </div>

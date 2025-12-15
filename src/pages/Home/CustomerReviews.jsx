@@ -12,7 +12,7 @@ const CustomerReviews = ({ reviewPromise }) => {
 
   return (
     <div className="mb-10 mt-5">
-      <h2 className="text-4xl text-center font-semibold text-secondary">
+      <h2 className="text-3xl text-center font-bold text-secondary">
         Customer Reviews
       </h2>
       <div>

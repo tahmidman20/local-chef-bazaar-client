@@ -42,21 +42,21 @@ const HeroBanner = () => {
             <span className="font-semibold">{bannerMeal.chefName}</span>
           </p>
 
-          <p className="mt-3 text-2xl font-bold text-[#F97316]">
-            ৳ {bannerMeal.price}
+          <p className="mt-3 text-2xl font-bold text-secondary">
+            $ {bannerMeal.price}
           </p>
 
           <div className="mt-8 flex gap-4">
             <Link
               to={`/order-now/${bannerMeal._id}`}
-              className="px-7 py-3 rounded-lg bg-secondary text-white font-semibold hover:bg-emerald-600 transition"
+              className="px-7 py-3 rounded-lg bg-secondary text-white font-semibold hover:bg-blue-600 transition"
             >
               Order Now
             </Link>
 
             <Link
               to="/meals"
-              className="px-7 py-3 rounded-lg border border-secondary text-sec font-semibold hover:bg-[#3BB77E] hover:text-white transition"
+              className="px-7 py-3 rounded-lg border border-secondary text-sec font-semibold hover:bg-blue-600 hover:text-white transition"
             >
               View All Meals
             </Link>

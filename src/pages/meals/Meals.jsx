@@ -20,7 +20,7 @@ const Meals = () => {
   return (
     <div>
       {meals && meals.length > 0 ? (
-        <div className="bg-yellow-50">
+        <div className="bg-base-200">
           <h1 className="text-3xl font-bold mb-6 text-center text-secondary">
             Daily Meals
           </h1>
