@@ -13,6 +13,8 @@ import OrderNow from "../pages/OrderNow";
 import MyOrders from "../pages/Dashboard/MyOrders";
 import PaymentSuccess from "../pages/Dashboard/payment/PaymentSuccess";
 import PaymentCancel from "../pages/Dashboard/payment/PaymentCancel";
+import Profile from "../pages/Dashboard/Profile";
+import ChefRoute from "./ChefRoute";
 
 export const router = createBrowserRouter([
   {
@@ -69,7 +71,11 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "add-meal",
-        Component: AddMeals,
+        element: (
+          <ChefRoute>
+            <AddMeals></AddMeals>
+          </ChefRoute>
+        ),
       },
       {
         path: "payment-success",
@@ -78,6 +84,10 @@ export const router = createBrowserRouter([
       {
         path: "payment-cancelled",
         Component: PaymentCancel,
+      },
+      {
+        path: "my-profile",
+        Component: Profile,
       },
       {
         path: "my-orders",

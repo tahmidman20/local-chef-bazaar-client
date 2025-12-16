@@ -1,13 +1,22 @@
 import React from "react";
-import { FaCreditCard } from "react-icons/fa";
+import { FaUserCircle } from "react-icons/fa";
 import { GiHotMeal } from "react-icons/gi";
 import { MdDeliveryDining } from "react-icons/md";
 import { Link, NavLink, Outlet } from "react-router";
+import useRole from "../hooks/useRole";
+import Loader from "../components/Loader";
 
 const DashboardLayout = () => {
+  const { role, isLoading } = useRole();
+  if (isLoading) return <Loader></Loader>;
   return (
     <div className="drawer lg:drawer-open max-w-7xl mx-auto">
-      <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
+      <input
+        id="my-drawer-4"
+        type="checkbox"
+        className="drawer-toggle"
+        defaultChecked
+      />
 
       <div className="drawer-content">
         {/* Navbar */}
@@ -79,17 +88,18 @@ const DashboardLayout = () => {
               </Link>
             </li>
             {/* our dashboard links */}
-
-            <li>
-              <NavLink
-                to="/dashboard/add-meal"
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip="Add Meal"
-              >
-                <GiHotMeal />{" "}
-                <span className="is-drawer-close:hidden">Add Meal</span>
-              </NavLink>
-            </li>
+            {role === "chef" && (
+              <li>
+                <NavLink
+                  to="/dashboard/add-meal"
+                  className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                  data-tip="Add Meal"
+                >
+                  <GiHotMeal />{" "}
+                  <span className="is-drawer-close:hidden">Add Meal</span>
+                </NavLink>
+              </li>
+            )}
             <li>
               <NavLink
                 to="/dashboard/my-orders"
@@ -103,28 +113,15 @@ const DashboardLayout = () => {
 
             {/* List item */}
             <li>
-              <button
+              <NavLink
+                to="/dashboard/my-profile"
                 className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip="Settings"
+                data-tip="My Profile"
               >
                 {/* Settings icon */}
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  strokeLinejoin="round"
-                  strokeLinecap="round"
-                  strokeWidth="2"
-                  fill="none"
-                  stroke="currentColor"
-                  className="my-1.5 inline-block size-4"
-                >
-                  <path d="M20 7h-9"></path>
-                  <path d="M14 17H5"></path>
-                  <circle cx="17" cy="17" r="3"></circle>
-                  <circle cx="7" cy="7" r="3"></circle>
-                </svg>
-                <span className="is-drawer-close:hidden">Settings</span>
-              </button>
+                <FaUserCircle />
+                <span className="is-drawer-close:hidden">My Profile</span>
+              </NavLink>
             </li>
           </ul>
         </div>
