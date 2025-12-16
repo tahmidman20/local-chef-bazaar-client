@@ -20,17 +20,27 @@ const MyOrders = () => {
   if (isLoading) return <Loader />;
 
   const handlePayment = async (order) => {
-    console.log("Paying Order:", order);
+    try {
+      const res = await axios.post(
+        `${import.meta.env.VITE_API_URL}/create-payment-intent`,
+        {
+          orderId: order._id,
+          totalPrice: order.totalPrice,
+        }
+      );
 
-    const res = await axios.post(
-      `${import.meta.env.VITE_API_URL}/create-payment-intent`,
-      {
-        orderId: order._id,
-        totalPrice: order.totalPrice,
-      }
-    );
+      window.location.replace(res.data.url);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
-    window.location.replace(res.data.url);
+  const getStatusBadge = (status) => {
+    if (status === "pending") return "badge badge-warning";
+    if (status === "accepted") return "badge badge-info";
+    if (status === "delivered") return "badge badge-success";
+    if (status === "cancelled") return "badge badge-error";
+    return "badge";
   };
 
   return (
@@ -43,17 +53,32 @@ const MyOrders = () => {
             <h3 className="text-xl font-semibold mb-2">{order.mealName}</h3>
 
             <p>
-              <b>Status:</b> {order.orderStatus}
+              <b>Status:</b>{" "}
+              <span className={getStatusBadge(order.status)}>
+                {order.status}
+              </span>
             </p>
+
             <p>
-              <b>Payment:</b> {order.paymentStatus}
+              <b>Payment:</b>{" "}
+              <span
+                className={
+                  order.paymentStatus === "paid"
+                    ? "badge badge-success"
+                    : "badge badge-warning"
+                }
+              >
+                {order.paymentStatus || "pending"}
+              </span>
             </p>
+
             <p>
               <b>Price:</b> ${order.price}
             </p>
             <p>
               <b>Quantity:</b> {order.quantity}
             </p>
+
             <p>
               <b>Order Time:</b> {new Date(order.orderTime).toLocaleString()}
             </p>
@@ -71,22 +96,15 @@ const MyOrders = () => {
               Total: ${order.totalPrice}
             </p>
 
-            {/* Pay Button Condition */}
-            {/* {order.orderStatus === "accepted" &&
+            {order.status === "accepted" &&
               order.paymentStatus === "pending" && (
                 <button
-                  onClick={() => handlePay(order)}
+                  onClick={() => handlePayment(order)}
                   className="btn btn-secondary w-full mt-4"
                 >
                   Pay Now
                 </button>
-              )} */}
-            <button
-              onClick={() => handlePayment(order)}
-              className="btn btn-secondary w-full mt-4"
-            >
-              Pay
-            </button>
+              )}
           </div>
         ))}
       </div>

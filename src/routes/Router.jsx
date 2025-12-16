@@ -15,6 +15,7 @@ import PaymentSuccess from "../pages/Dashboard/payment/PaymentSuccess";
 import PaymentCancel from "../pages/Dashboard/payment/PaymentCancel";
 import Profile from "../pages/Dashboard/Profile";
 import ChefRoute from "./ChefRoute";
+import OrderRequests from "../pages/Dashboard/chef/OrderRequests";
 
 export const router = createBrowserRouter([
   {
@@ -74,6 +75,14 @@ export const router = createBrowserRouter([
         element: (
           <ChefRoute>
             <AddMeals></AddMeals>
+          </ChefRoute>
+        ),
+      },
+      {
+        path: "order-requests",
+        element: (
+          <ChefRoute>
+            <OrderRequests></OrderRequests>
           </ChefRoute>
         ),
       },

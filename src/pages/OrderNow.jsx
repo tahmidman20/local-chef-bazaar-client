@@ -50,7 +50,6 @@ const OrderNow = () => {
       chefName: meal.chefName,
       userEmail: user.email,
       userAddress: data.userAddress,
-      orderStatus: "pending",
       orderTime: new Date(),
     };
 

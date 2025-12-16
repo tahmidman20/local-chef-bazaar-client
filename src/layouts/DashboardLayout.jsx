@@ -100,16 +100,31 @@ const DashboardLayout = () => {
                 </NavLink>
               </li>
             )}
-            <li>
-              <NavLink
-                to="/dashboard/my-orders"
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip="My Orders"
-              >
-                <MdDeliveryDining />{" "}
-                <span className="is-drawer-close:hidden">My Orders</span>
-              </NavLink>
-            </li>
+            {/* order request */}
+            {role === "chef" && (
+              <li>
+                <NavLink
+                  to="/dashboard/order-requests"
+                  className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                  data-tip="Order Requests"
+                >
+                  <GiHotMeal />{" "}
+                  <span className="is-drawer-close:hidden">Order Requests</span>
+                </NavLink>
+              </li>
+            )}
+            {role === "user" && (
+              <li>
+                <NavLink
+                  to="/dashboard/my-orders"
+                  className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                  data-tip="My Orders"
+                >
+                  <MdDeliveryDining />{" "}
+                  <span className="is-drawer-close:hidden">My Orders</span>
+                </NavLink>
+              </li>
+            )}
 
             {/* List item */}
             <li>
