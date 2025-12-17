@@ -5,6 +5,7 @@ import React from "react";
 import { Link, useParams } from "react-router";
 import Loader from "../../components/Loader";
 import AddReview from "./AddReview ";
+import ThisMealReviews from "./ThisMealReviews";
 
 const ViewMealDetails = () => {
   const { id } = useParams();
@@ -96,6 +97,7 @@ const ViewMealDetails = () => {
           </div>
         </div>
       </div>
+      <ThisMealReviews meal={meal}></ThisMealReviews>
       <AddReview meal={meal}></AddReview>
     </div>
   );
