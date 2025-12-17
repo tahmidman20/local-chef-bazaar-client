@@ -16,6 +16,7 @@ import PaymentCancel from "../pages/Dashboard/payment/PaymentCancel";
 import Profile from "../pages/Dashboard/Profile";
 import ChefRoute from "./ChefRoute";
 import OrderRequests from "../pages/Dashboard/chef/OrderRequests";
+import MyReviews from "../pages/Dashboard/MyReviews";
 
 export const router = createBrowserRouter([
   {
@@ -85,6 +86,10 @@ export const router = createBrowserRouter([
             <OrderRequests></OrderRequests>
           </ChefRoute>
         ),
+      },
+      {
+        path: "my-reviews",
+        Component: MyReviews,
       },
       {
         path: "payment-success",

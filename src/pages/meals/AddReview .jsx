@@ -5,6 +5,7 @@ import useAuth from "../../hooks/useAuth";
 
 const AddReview = ({ meal }) => {
   const { user } = useAuth();
+  // console.log(meal);
 
   const [rating, setRating] = useState(5);
   const [comment, setComment] = useState("");
@@ -21,7 +22,9 @@ const AddReview = ({ meal }) => {
 
     const reviewData = {
       foodId: meal._id,
+      mealName: meal.foodName,
       reviewerName: user.displayName || "Anonymous",
+      userEmail: user.email,
       reviewerImage: user.photoURL || "",
       rating: Number(rating),
       comment: comment,

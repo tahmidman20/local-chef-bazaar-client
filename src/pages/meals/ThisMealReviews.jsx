@@ -4,7 +4,11 @@ import Loader from "../../components/Loader";
 
 const ThisMealReviews = ({ meal }) => {
   const foodId = meal._id;
-  const { data: reviews = [], isLoading } = useQuery({
+  const {
+    data: reviews = [],
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["reviews", foodId],
     enabled: !!foodId,
     queryFn: async () => {
@@ -14,6 +18,7 @@ const ThisMealReviews = ({ meal }) => {
       return res.data;
     },
   });
+  refetch();
 
   if (isLoading) {
     return <Loader></Loader>;

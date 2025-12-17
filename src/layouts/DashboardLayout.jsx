@@ -1,7 +1,7 @@
 import React from "react";
 import { FaUserCircle } from "react-icons/fa";
 import { GiHotMeal } from "react-icons/gi";
-import { MdDeliveryDining } from "react-icons/md";
+import { MdDeliveryDining, MdReviews } from "react-icons/md";
 import { Link, NavLink, Outlet } from "react-router";
 import useRole from "../hooks/useRole";
 import Loader from "../components/Loader";
@@ -87,6 +87,7 @@ const DashboardLayout = () => {
                 <span className="is-drawer-close:hidden">Homepage</span>
               </Link>
             </li>
+            {/* chef */}
             {/* our dashboard links */}
             {role === "chef" && (
               <li>
@@ -113,6 +114,7 @@ const DashboardLayout = () => {
                 </NavLink>
               </li>
             )}
+            {/* user my-orders */}
             {role === "user" && (
               <li>
                 <NavLink
@@ -122,6 +124,19 @@ const DashboardLayout = () => {
                 >
                   <MdDeliveryDining />{" "}
                   <span className="is-drawer-close:hidden">My Orders</span>
+                </NavLink>
+              </li>
+            )}
+            {/* user my-reviews */}
+            {role === "user" && (
+              <li>
+                <NavLink
+                  to="/dashboard/my-reviews"
+                  className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                  data-tip="My Reviews"
+                >
+                  <MdReviews />{" "}
+                  <span className="is-drawer-close:hidden">My Reviews</span>
                 </NavLink>
               </li>
             )}

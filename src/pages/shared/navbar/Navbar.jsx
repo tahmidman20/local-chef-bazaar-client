@@ -19,14 +19,35 @@ const Navbar = () => {
   const links = (
     <>
       <li>
-        <NavLink to="/">Home</NavLink>
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            isActive && "font-bold text-md text-secondary underline"
+          }
+        >
+          Home
+        </NavLink>
       </li>
       <li>
-        <NavLink to="/meals">Meals</NavLink>
+        <NavLink
+          to="/meals"
+          className={({ isActive }) =>
+            isActive && "font-bold text-md text-secondary underline"
+          }
+        >
+          Meals
+        </NavLink>
       </li>
       {user && (
         <li>
-          <NavLink to="/dashboard">Dashboard</NavLink>
+          <NavLink
+            to="/dashboard"
+            className={({ isActive }) =>
+              isActive && "font-bold text-md text-secondary underline"
+            }
+          >
+            Dashboard
+          </NavLink>
         </li>
       )}
     </>
@@ -81,18 +102,18 @@ const Navbar = () => {
           )}
         </div>
         {/* image */}
-        <div>
+        <Link to="/dashboard/my-profile">
           <div className="w-11 h-11 rounded-full overflow-hidden mb-2 ring ring-primary mx-3">
             <img
               src={
                 user?.photoURL ||
-                "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                "https://i.ibb.co.com/Txy1pYZv/istockphoto-1130884625-612x612.jpg"
               }
               alt="User Profile Avatar"
               className="w-full h-full object-cover"
             />
           </div>
-        </div>
+        </Link>
       </div>
     </div>
   );
