@@ -94,10 +94,10 @@ const DashboardLayout = () => {
                 <NavLink
                   to="/dashboard/add-meal"
                   className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                  data-tip="Add Meal"
+                  data-tip="Create Meal"
                 >
                   <GiHotMeal />{" "}
-                  <span className="is-drawer-close:hidden">Add Meal</span>
+                  <span className="is-drawer-close:hidden">Create Meal</span>
                 </NavLink>
               </li>
             )}

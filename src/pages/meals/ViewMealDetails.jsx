@@ -6,14 +6,54 @@ import { Link, useParams } from "react-router";
 import Loader from "../../components/Loader";
 import AddReview from "./AddReview ";
 import ThisMealReviews from "./ThisMealReviews";
+import Swal from "sweetalert2";
+import useAuth from "../../hooks/useAuth";
 
 const ViewMealDetails = () => {
   const { id } = useParams();
-  const {
-    data: meal = {},
-    isLoading,
-    // refetch,
-  } = useQuery({
+  const { user } = useAuth();
+  const handleAddFavorite = async (meal) => {
+    if (!user?.email) {
+      Swal.fire("Login Required", "Please login first", "warning");
+      return;
+    }
+
+    const favoriteData = {
+      userEmail: user.email,
+      mealId: meal._id,
+      mealName: meal.foodName,
+      chefId: meal.chefId,
+      chefName: meal.chefName,
+      price: meal.price,
+    };
+
+    try {
+      const res = await axios.post(
+        `${import.meta.env.VITE_API_URL}/favorites`,
+        favoriteData
+      );
+
+      if (res.data.message === "Already added to favorites") {
+        Swal.fire({
+          icon: "info",
+          title: "Already Added",
+          text: "This meal is already in your favorites",
+        });
+      } else {
+        Swal.fire({
+          icon: "success",
+          title: "Added!",
+          text: "Meal added to favorites ",
+          timer: 1500,
+          showConfirmButton: false,
+        });
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const { data: meal = {}, isLoading } = useQuery({
     queryKey: ["meal", id],
     queryFn: async () => {
       const result = await axios(`${import.meta.env.VITE_API_URL}/meals/${id}`);
@@ -89,8 +129,14 @@ const ViewMealDetails = () => {
           </div>
 
           <div className="mt-8 text-center">
+            <button
+              onClick={() => handleAddFavorite(meal)}
+              className="btn btn-outline btn-error w-full mt-3"
+            >
+              ❤️ Add to Favorite
+            </button>
             <Link to={`/order-now/${meal._id}`}>
-              <button className="btn btn-secondary px-8 text-lg">
+              <button className="btn btn-outline px-8 w-full hover:bg-secondary hover:text-amber-50 mt-4 text-md">
                 Order Now
               </button>
             </Link>
