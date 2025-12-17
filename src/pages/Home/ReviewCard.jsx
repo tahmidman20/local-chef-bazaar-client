@@ -2,7 +2,7 @@ import React from "react";
 import { BsQuote } from "react-icons/bs";
 
 const ReviewCard = ({ review }) => {
-  const { name, rating, text, location, photoURL } = review;
+  const { reviewerName, rating, comment, date, reviewerImage } = review;
 
   const renderStars = (rating) => {
     const totalStars = 5;
@@ -24,7 +24,9 @@ const ReviewCard = ({ review }) => {
           <BsQuote />
         </div>
 
-        <p className="text-gray-700 text-base mb-6 leading-relaxed">“{text}”</p>
+        <p className="text-gray-700 text-base mb-6 leading-relaxed">
+          {comment}
+        </p>
 
         <hr className="border-t-2 border-dashed border-gray-300 my-6" />
 
@@ -32,16 +34,20 @@ const ReviewCard = ({ review }) => {
           <div className="avatar">
             <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-cyan-600">
               <img
-                src={photoURL || "https://i.ibb.co/0VZ8VHt/default-avatar.png"}
-                alt={name}
+                src={
+                  reviewerImage || "https://i.ibb.co/0VZ8VHt/default-avatar.png"
+                }
+                alt=""
                 className="w-full h-full object-cover"
               />
             </div>
           </div>
 
           <div>
-            <div className="text-lg font-semibold text-gray-800">{name}</div>
-            <div className="text-sm text-gray-500">{location}</div>
+            <div className="text-lg font-semibold text-gray-800">
+              {reviewerName}
+            </div>
+            <div className="text-sm text-gray-500">{date}</div>
             <div className="mt-1">{renderStars(rating)}</div>
           </div>
         </div>

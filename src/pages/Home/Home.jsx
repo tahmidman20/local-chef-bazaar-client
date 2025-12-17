@@ -4,8 +4,11 @@ import CustomerReviews from "./CustomerReviews";
 import DailyMeals from "../meals/DailyMeals ";
 import WhyChooseUs from "./WhyChooseUs";
 
-const reviewPromise = fetch("/reviews.json").then((res) => res.json());
+const reviewPromise = fetch(`${import.meta.env.VITE_API_URL}/reviews`).then(
+  (res) => res.json()
+);
 
+console.log(reviewPromise);
 const Home = () => {
   return (
     <div className="">
