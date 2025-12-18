@@ -1,7 +1,13 @@
 import React from "react";
 import { FaUserCircle } from "react-icons/fa";
 import { GiHotMeal } from "react-icons/gi";
-import { MdDeliveryDining, MdReviews } from "react-icons/md";
+import { CiInboxIn } from "react-icons/ci";
+import {
+  MdDeliveryDining,
+  MdFavorite,
+  MdOutlineFoodBank,
+  MdReviews,
+} from "react-icons/md";
 import { Link, NavLink, Outlet } from "react-router";
 import useRole from "../hooks/useRole";
 import Loader from "../components/Loader";
@@ -101,6 +107,19 @@ const DashboardLayout = () => {
                 </NavLink>
               </li>
             )}
+            {/* chef my meals */}
+            {role === "chef" && (
+              <li>
+                <NavLink
+                  to="/dashboard/my-meals"
+                  className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                  data-tip="my Meals"
+                >
+                  <MdOutlineFoodBank />{" "}
+                  <span className="is-drawer-close:hidden">My Meals</span>
+                </NavLink>
+              </li>
+            )}
             {/* order request */}
             {role === "chef" && (
               <li>
@@ -109,7 +128,7 @@ const DashboardLayout = () => {
                   className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                   data-tip="Order Requests"
                 >
-                  <GiHotMeal />{" "}
+                  <CiInboxIn />{" "}
                   <span className="is-drawer-close:hidden">Order Requests</span>
                 </NavLink>
               </li>
@@ -137,6 +156,19 @@ const DashboardLayout = () => {
                 >
                   <MdReviews />{" "}
                   <span className="is-drawer-close:hidden">My Reviews</span>
+                </NavLink>
+              </li>
+            )}
+            {/* user my-favorites */}
+            {role === "user" && (
+              <li>
+                <NavLink
+                  to="/dashboard/favorite-meals"
+                  className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                  data-tip="Favorite Meals"
+                >
+                  <MdFavorite />{" "}
+                  <span className="is-drawer-close:hidden">Favorite Meals</span>
                 </NavLink>
               </li>
             )}

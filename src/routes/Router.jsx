@@ -17,6 +17,8 @@ import Profile from "../pages/Dashboard/Profile";
 import ChefRoute from "./ChefRoute";
 import OrderRequests from "../pages/Dashboard/chef/OrderRequests";
 import MyReviews from "../pages/Dashboard/MyReviews";
+import FavoriteMeals from "../pages/meals/FavoriteMeals";
+import MyMeals from "../pages/meals/MyMeals";
 
 export const router = createBrowserRouter([
   {
@@ -86,6 +88,18 @@ export const router = createBrowserRouter([
             <OrderRequests></OrderRequests>
           </ChefRoute>
         ),
+      },
+      {
+        path: "my-meals",
+        element: (
+          <ChefRoute>
+            <MyMeals></MyMeals>
+          </ChefRoute>
+        ),
+      },
+      {
+        path: "favorite-meals",
+        Component: FavoriteMeals,
       },
       {
         path: "my-reviews",

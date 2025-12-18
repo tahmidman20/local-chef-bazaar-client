@@ -124,7 +124,7 @@ const ViewMealDetails = () => {
               {estimatedDeliveryTime}
             </p>
             <p>
-              <span className="font-bold">Delivery Area:</span> deliveryArea
+              <span className="font-bold">Delivery Area:</span> address
             </p>
           </div>
 

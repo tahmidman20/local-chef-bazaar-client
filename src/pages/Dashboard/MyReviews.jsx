@@ -78,7 +78,10 @@ const MyReviews = () => {
       ) : (
         <div className="grid md:grid-cols-2 gap-6">
           {reviews.map((review) => (
-            <div key={review._id} className="card bg-base-100 shadow-lg p-5">
+            <div
+              key={review._id}
+              className="card bg-base-100 shadow-lg p-5 mx-4 sm:mx-0"
+            >
               <h3 className="text-xl font-semibold">{review.mealName}</h3>
 
               <p>⭐ Rating: {review.rating}</p>

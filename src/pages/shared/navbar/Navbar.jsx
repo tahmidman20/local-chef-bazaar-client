@@ -42,9 +42,9 @@ const Navbar = () => {
         <li>
           <NavLink
             to="/dashboard"
-            className={({ isActive }) =>
-              isActive && "font-bold text-md text-secondary underline"
-            }
+            // className={({ isActive }) =>
+            //   isActive && "font-bold text-md text-secondary underline"
+            // }
           >
             Dashboard
           </NavLink>
@@ -102,7 +102,12 @@ const Navbar = () => {
           )}
         </div>
         {/* image */}
-        <Link to="/dashboard/my-profile">
+        <NavLink
+          to="/dashboard/my-profile"
+          className={({ isActive }) =>
+            `px-4 py-2 ${isActive ? "text-yellow-500 font-bold" : ""}`
+          }
+        >
           <div className="w-11 h-11 rounded-full overflow-hidden mb-2 ring ring-primary mx-3">
             <img
               src={
@@ -113,7 +118,7 @@ const Navbar = () => {
               className="w-full h-full object-cover"
             />
           </div>
-        </Link>
+        </NavLink>
       </div>
     </div>
   );
