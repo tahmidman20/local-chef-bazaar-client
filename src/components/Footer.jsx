@@ -9,7 +9,6 @@ const Footer = () => {
   return (
     <footer className="bg-[#1F2937] text-gray-300 pt-14">
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10">
-        {/* Brand Info */}
         <div>
           <h2 className="text-2xl font-bold text-white mb-4">
             Local<span className="text-secondary">Chef</span>Bazaar
@@ -19,7 +18,6 @@ const Footer = () => {
             delivering fresh, healthy, and homemade meals straight to your door.
           </p>
 
-          {/* Social Icons */}
           <div className="flex gap-4 mt-5">
             <a className="hover:text-secondary" href="#">
               <FaFacebookF />
@@ -36,7 +34,6 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Contact Info */}
         <div>
           <h3 className="text-lg font-semibold text-white mb-4">Contact Us</h3>
           <ul className="space-y-2 text-sm">
@@ -46,7 +43,6 @@ const Footer = () => {
           </ul>
         </div>
 
-        {/* Working Hours */}
         <div>
           <h3 className="text-lg font-semibold text-white mb-4">
             Working Hours
@@ -58,7 +54,6 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Bottom Bar */}
       <div className="border-t border-gray-700 mt-10 py-4 text-center text-sm">
         © {new Date().getFullYear()} LocalChefBazaar. All rights reserved.
       </div>

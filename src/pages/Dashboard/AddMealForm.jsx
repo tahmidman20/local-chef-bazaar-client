@@ -7,11 +7,12 @@ import { useMutation } from "@tanstack/react-query";
 
 import Loader from "../../components/Loader";
 import { toast } from "react-toastify";
+import useDbUser from "../../hooks/useDbUser";
 
 const AddMealForm = () => {
   const { user } = useAuth();
+  const dbUser = useDbUser();
 
-  //useMutation hooks
   const {
     isPending,
     isError,
@@ -24,7 +25,6 @@ const AddMealForm = () => {
       console.log(data);
       toast.success("Meal added successfully");
       mutationReset();
-      //query key
     },
     onError: (error) => {
       console.log(error);
@@ -35,7 +35,6 @@ const AddMealForm = () => {
     retry: 3,
   });
 
-  //react hook form
   const {
     register,
     handleSubmit,
@@ -92,7 +91,6 @@ const AddMealForm = () => {
         onSubmit={handleSubmit(onSubmit)}
         className="grid grid-cols-1 md:grid-cols-2 gap-6"
       >
-        {/* Food Name */}
         <div>
           <input
             type="text"
@@ -105,7 +103,6 @@ const AddMealForm = () => {
           )}
         </div>
 
-        {/* Chef Name */}
         <div>
           <input
             type="text"
@@ -118,7 +115,6 @@ const AddMealForm = () => {
           )}
         </div>
 
-        {/* Food Image */}
         <div className="md:col-span-2">
           <input
             type="file"
@@ -131,7 +127,6 @@ const AddMealForm = () => {
           )}
         </div>
 
-        {/* Price */}
         <div>
           <input
             type="number"
@@ -145,7 +140,6 @@ const AddMealForm = () => {
           )}
         </div>
 
-        {/* Rating */}
         <div>
           <input
             type="number"
@@ -161,7 +155,6 @@ const AddMealForm = () => {
           )}
         </div>
 
-        {/* Ingredients */}
         <div className="md:col-span-2">
           <textarea
             {...register("ingredients", { required: true })}
@@ -173,7 +166,6 @@ const AddMealForm = () => {
           )}
         </div>
 
-        {/* Estimated Delivery Time */}
         <div>
           <input
             type="text"
@@ -188,7 +180,6 @@ const AddMealForm = () => {
           )}
         </div>
 
-        {/* Chef Experience */}
         <div>
           <textarea
             {...register("chefExperience", { required: true })}
@@ -200,7 +191,6 @@ const AddMealForm = () => {
           )}
         </div>
 
-        {/* Chef ID */}
         <div>
           <input
             type="text"
@@ -213,7 +203,6 @@ const AddMealForm = () => {
           )}
         </div>
 
-        {/* User Email */}
         <div>
           <input
             type="email"
@@ -223,10 +212,15 @@ const AddMealForm = () => {
             className="input input-bordered w-full"
           />
         </div>
-
-        <button className="btn btn-secondary w-full md:col-span-2 mt-4">
-          Add Meal
-        </button>
+        {dbUser?.status === "fraud" ? (
+          <button disabled className="btn btn-error w-full">
+            🚫 Fraud Account
+          </button>
+        ) : (
+          <button className="btn btn-secondary w-full md:col-span-2 mt-4">
+            Add Meal
+          </button>
+        )}
       </form>
     </div>
   );

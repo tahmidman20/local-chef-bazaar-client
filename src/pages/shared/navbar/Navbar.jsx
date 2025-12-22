@@ -15,14 +15,14 @@ const Navbar = () => {
         console.log(error);
       });
   };
-  // console.log(user?.photoURL);
+
   const links = (
     <>
       <li>
         <NavLink
           to="/"
           className={({ isActive }) =>
-            isActive && "font-bold text-md text-secondary underline"
+            isActive ? "font-bold text-md text-secondary underline" : undefined
           }
         >
           Home
@@ -32,7 +32,7 @@ const Navbar = () => {
         <NavLink
           to="/meals"
           className={({ isActive }) =>
-            isActive && "font-bold text-md text-secondary underline"
+            isActive ? "font-bold text-md text-secondary underline" : undefined
           }
         >
           Meals
@@ -40,14 +40,7 @@ const Navbar = () => {
       </li>
       {user && (
         <li>
-          <NavLink
-            to="/dashboard"
-            // className={({ isActive }) =>
-            //   isActive && "font-bold text-md text-secondary underline"
-            // }
-          >
-            Dashboard
-          </NavLink>
+          <NavLink to="/dashboard">Dashboard</NavLink>
         </li>
       )}
     </>

@@ -2,14 +2,16 @@ import { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import useAuth from "../../hooks/useAuth";
+import useDbUser from "../../hooks/useDbUser";
 
-const AddReview = ({ meal }) => {
+const AddReview = ({ meal, refetchReviews }) => {
   const { user } = useAuth();
   // console.log(meal);
 
   const [rating, setRating] = useState(5);
   const [comment, setComment] = useState("");
   const [loading, setLoading] = useState(false);
+  const dbUser = useDbUser();
 
   const handleSubmitReview = async () => {
     if (!user) {
@@ -44,6 +46,7 @@ const AddReview = ({ meal }) => {
         toast.success("Review submitted successfully!");
         setComment("");
         setRating(5);
+        refetchReviews();
       }
     } catch (error) {
       console.error(error);
@@ -79,13 +82,19 @@ const AddReview = ({ meal }) => {
         onChange={(e) => setComment(e.target.value)}
       />
 
-      <button
-        onClick={handleSubmitReview}
-        disabled={loading}
-        className="btn btn-secondary hover:bg-blue-600 w-full"
-      >
-        {loading ? "Submitting..." : "Submit Review"}
-      </button>
+      {dbUser?.status === "fraud" ? (
+        <button disabled className="btn btn-error w-full">
+          🚫 Fraud Account
+        </button>
+      ) : (
+        <button
+          onClick={handleSubmitReview}
+          disabled={loading}
+          className="btn btn-secondary hover:bg-blue-600 w-full"
+        >
+          {loading ? "Submitting..." : "Submit Review"}
+        </button>
+      )}
     </div>
   );
 };

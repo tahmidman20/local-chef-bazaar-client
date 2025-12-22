@@ -44,11 +44,12 @@ const CustomerReviews = ({ reviewPromise }) => {
             modules={[EffectCoverflow, Pagination, Autoplay]}
             className="mySwiper"
           >
-            {reviews.map((review) => (
-              <SwiperSlide key={review.id}>
-                <ReviewCard review={review}></ReviewCard>
-              </SwiperSlide>
-            ))}
+            {reviews?.length > 0 &&
+              reviews?.map((review) => (
+                <SwiperSlide key={review.id}>
+                  <ReviewCard review={review}></ReviewCard>
+                </SwiperSlide>
+              ))}
           </Swiper>
         </>
       </div>

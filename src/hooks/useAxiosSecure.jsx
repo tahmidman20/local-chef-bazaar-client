@@ -4,7 +4,7 @@ import { useNavigate } from "react-router";
 import useAuth from "./useAuth";
 
 export const axiosSecure = axios.create({
-  baseURL: "http://localhost:3000/",
+  baseURL: import.meta.env.VITE_API_URL,
 });
 
 const useAxiosSecure = () => {
@@ -13,7 +13,7 @@ const useAxiosSecure = () => {
 
   useEffect(() => {
     const reqInterceptor = axiosSecure.interceptors.request.use((config) => {
-      config.headers.Authorization = `Bearer ${user?.accessToken}`;
+      config.headers.authorization = `Bearer ${user?.accessToken}`;
       return config;
     });
 

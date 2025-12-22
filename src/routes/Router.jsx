@@ -19,6 +19,10 @@ import OrderRequests from "../pages/Dashboard/chef/OrderRequests";
 import MyReviews from "../pages/Dashboard/MyReviews";
 import FavoriteMeals from "../pages/meals/FavoriteMeals";
 import MyMeals from "../pages/meals/MyMeals";
+import ManageUsers from "../pages/admin/ManageUsers";
+import ManageRequests from "../pages/admin/ManageRequests";
+import PlatformStatistics from "../pages/admin/PlatformStatistics";
+import DashboardHome from "../pages/admin/DashboardHome";
 
 export const router = createBrowserRouter([
   {
@@ -74,6 +78,10 @@ export const router = createBrowserRouter([
     ),
     children: [
       {
+        index: true,
+        element: <DashboardHome></DashboardHome>,
+      },
+      {
         path: "add-meal",
         element: (
           <ChefRoute>
@@ -100,6 +108,14 @@ export const router = createBrowserRouter([
       {
         path: "favorite-meals",
         Component: FavoriteMeals,
+      },
+      {
+        path: "manage-users",
+        Component: ManageUsers,
+      },
+      {
+        path: "manage-requests",
+        Component: ManageRequests,
       },
       {
         path: "my-reviews",

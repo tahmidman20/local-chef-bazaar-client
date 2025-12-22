@@ -1,12 +1,25 @@
 import React, { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useRole from "../../hooks/useRole";
+import Loader from "../../components/Loader";
+import { toast } from "react-toastify";
 
 const Profile = () => {
   const { user, loading } = useAuth();
   const axiosSecure = useAxiosSecure();
   const [dbUser, setDbUser] = useState(null);
   const [dbLoading, setDbLoading] = useState(true);
+  const { role } = useRole();
+
+  const handleRequest = async (type) => {
+    await axiosSecure.post("/requests", {
+      userName: user.displayName,
+      userEmail: user.email,
+      requestType: type,
+    });
+    toast.success("Request submitted!");
+  };
 
   useEffect(() => {
     if (user?.email) {
@@ -25,11 +38,7 @@ const Profile = () => {
   }, [user?.email, axiosSecure]);
 
   if (loading || dbLoading) {
-    return (
-      <div className="min-h-screen flex justify-center items-center">
-        <span className="loading loading-spinner loading-lg"></span>
-      </div>
-    );
+    return <Loader></Loader>;
   }
 
   return (
@@ -46,7 +55,33 @@ const Profile = () => {
           </h2>
           <p className="text-gray-500">{user?.email}</p>
         </div>
+        <div className="flex flex-row gap-4 w-full my-4">
+          {role === "chef" && (
+            <button
+              onClick={() => handleRequest("admin")}
+              className="btn btn-primary btn-outline w-full flex-1"
+            >
+              Be an admin
+            </button>
+          )}
+          {role === "user" && (
+            <div className="flex flex-row gap-4 w-full my-4">
+              <button
+                onClick={() => handleRequest("admin")}
+                className="btn btn-primary btn-outline w-full flex-1"
+              >
+                Be an admin
+              </button>
 
+              <button
+                onClick={() => handleRequest("chef")}
+                className="btn btn-secondary btn-outline w-full flex-1"
+              >
+                Be a chef
+              </button>
+            </div>
+          )}
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="p-4 bg-gray-50 rounded-lg">
             <p className="text-sm text-gray-500">User Name</p>
@@ -84,7 +119,6 @@ const Profile = () => {
             </span>
           </div>
 
-          {/* Chef ID only if role === chef */}
           {dbUser?.role === "chef" && (
             <div className="p-4 bg-gray-50 rounded-lg">
               <p className="text-sm text-gray-500">Chef ID</p>

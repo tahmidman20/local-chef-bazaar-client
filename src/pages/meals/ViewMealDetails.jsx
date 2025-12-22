@@ -1,17 +1,20 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { Star } from "lucide-react";
-import React from "react";
+import React, { useState } from "react";
 import { Link, useParams } from "react-router";
 import Loader from "../../components/Loader";
 import AddReview from "./AddReview ";
 import ThisMealReviews from "./ThisMealReviews";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
+import useDbUser from "../../hooks/useDbUser";
 
 const ViewMealDetails = () => {
   const { id } = useParams();
   const { user } = useAuth();
+  const dbUser = useDbUser();
+  const [reviewRefetch, setReviewRefetch] = useState(null);
   const handleAddFavorite = async (meal) => {
     if (!user?.email) {
       Swal.fire("Login Required", "Please login first", "warning");
@@ -52,7 +55,7 @@ const ViewMealDetails = () => {
       console.error(error);
     }
   };
-
+  console.log(user);
   const { data: meal = {}, isLoading } = useQuery({
     queryKey: ["meal", id],
     queryFn: async () => {
@@ -124,27 +127,43 @@ const ViewMealDetails = () => {
               {estimatedDeliveryTime}
             </p>
             <p>
-              <span className="font-bold">Delivery Area:</span> address
+              <span className="font-bold">Delivery Area:</span>{" "}
+              {dbUser?.address || "N/A"}
             </p>
           </div>
 
           <div className="mt-8 text-center">
-            <button
-              onClick={() => handleAddFavorite(meal)}
-              className="btn btn-outline btn-error w-full mt-3"
-            >
-              ❤️ Add to Favorite
-            </button>
-            <Link to={`/order-now/${meal._id}`}>
-              <button className="btn btn-outline px-8 w-full hover:bg-secondary hover:text-amber-50 mt-4 text-md">
-                Order Now
+            {dbUser?.status === "fraud" ? (
+              <button disabled className="btn btn-error w-full  mb-2">
+                🚫Fraud Account
               </button>
-            </Link>
+            ) : (
+              <button
+                onClick={() => handleAddFavorite(meal)}
+                className="btn btn-outline btn-error w-full mt-3"
+              >
+                ❤️ Add to Favorite
+              </button>
+            )}
+            {dbUser?.status === "fraud" ? (
+              <button disabled className="btn btn-error w-full">
+                🚫 Fraud Account
+              </button>
+            ) : (
+              <Link to={`/order-now/${meal._id}`}>
+                <button className="btn btn-outline px-8 w-full hover:bg-secondary hover:text-amber-50 mt-4 text-md">
+                  Order Now
+                </button>
+              </Link>
+            )}
           </div>
         </div>
       </div>
-      <ThisMealReviews meal={meal}></ThisMealReviews>
-      <AddReview meal={meal}></AddReview>
+      <ThisMealReviews
+        meal={meal}
+        setReviewRefetch={setReviewRefetch}
+      ></ThisMealReviews>
+      <AddReview meal={meal} refetchReviews={reviewRefetch}></AddReview>
     </div>
   );
 };

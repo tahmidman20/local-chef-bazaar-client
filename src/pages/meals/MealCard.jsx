@@ -18,7 +18,7 @@ const MealCard = ({ meal }) => {
             </p>
             <p className="mt-2 font-bold">${price.toFixed(2)}</p>
             <p>Rating: {rating} ⭐</p>
-            {/* <p>Delivery Area: {deliveryArea}</p> */}
+
             <Link
               to={`/meal-details/${_id}`}
               className="mt-4 w-full btn btn-secondary text-white py-2 rounded hover:bg-blue-600 transition"

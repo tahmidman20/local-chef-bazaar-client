@@ -9,11 +9,11 @@ const OrderRequests = () => {
 
   //fetch chef orders
   const { data: orders = [], isLoading } = useQuery({
-    queryKey: ["chefOrders", user?.uid],
-    enabled: !!user?.uid,
+    queryKey: ["chefOrders", user?.email],
+    enabled: !!user?.email,
     queryFn: async () => {
       const res = await axios.get(
-        `${import.meta.env.VITE_API_URL}/orders?chefId=${user.uid}`
+        `${import.meta.env.VITE_API_URL}/orders?chefEmail=${user.email}`
       );
       return res.data;
     },
@@ -29,7 +29,7 @@ const OrderRequests = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ["chefOrders", user?.uid],
+        queryKey: ["chefOrders", user?.email],
       });
     },
   });

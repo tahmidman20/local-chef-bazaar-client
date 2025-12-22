@@ -59,7 +59,6 @@ const DashboardLayout = () => {
         {/* Page content here */}
         <Outlet></Outlet>
       </div>
-
       <div className="drawer-side is-drawer-close:overflow-visible">
         <label
           htmlFor="my-drawer-4"
@@ -93,6 +92,37 @@ const DashboardLayout = () => {
                 <span className="is-drawer-close:hidden">Homepage</span>
               </Link>
             </li>
+
+            {/* admin */}
+            {/* manage users */}
+            {role === "admin" && (
+              <li>
+                <NavLink
+                  to="/dashboard/manage-users"
+                  className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                  data-tip="Manage Users"
+                >
+                  <GiHotMeal />{" "}
+                  <span className="is-drawer-close:hidden">Manage Users</span>
+                </NavLink>
+              </li>
+            )}
+            {/* manage requests */}
+            {role === "admin" && (
+              <li>
+                <NavLink
+                  to="/dashboard/manage-requests"
+                  className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                  data-tip="Manage Requests"
+                >
+                  <GiHotMeal />{" "}
+                  <span className="is-drawer-close:hidden">
+                    Manage Requests
+                  </span>
+                </NavLink>
+              </li>
+            )}
+
             {/* chef */}
             {/* our dashboard links */}
             {role === "chef" && (

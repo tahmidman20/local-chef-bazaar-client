@@ -2,17 +2,17 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import useAuth from "../../hooks/useAuth";
 import Loader from "../../components/Loader";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const MyOrders = () => {
   const { user } = useAuth();
+  const axiosSecure = useAxiosSecure();
 
   const { data: orders = [], isLoading } = useQuery({
     queryKey: ["orders", user?.email],
     enabled: !!user?.email,
     queryFn: async () => {
-      const res = await axios.get(
-        `${import.meta.env.VITE_API_URL}/orders?email=${user.email}`
-      );
+      const res = await axiosSecure.get(`/orders/user?email=${user.email}`);
       return res.data;
     },
   });

@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import Loader from "../../components/Loader";
 
 const DailyMeals = () => {
-  const { data: meals = [], isLoading } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ["dailyMeals"],
     queryFn: async () => {
       const res = await axios.get(`${import.meta.env.VITE_API_URL}/meals`);
@@ -14,8 +14,8 @@ const DailyMeals = () => {
   });
 
   if (isLoading) return <Loader />;
-
-  const dailyMeals = meals.slice(0, 6);
+  const mealsArray = data?.meals || [];
+  const dailyMeals = mealsArray.slice(0, 6);
 
   return (
     <section className="py-16 bg-white">

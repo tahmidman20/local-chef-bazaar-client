@@ -34,9 +34,7 @@ const ReviewCard = ({ review }) => {
           <div className="avatar">
             <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-cyan-600">
               <img
-                src={
-                  reviewerImage || "https://i.ibb.co/0VZ8VHt/default-avatar.png"
-                }
+                src={reviewerImage || "../../assets/user.png"}
                 alt=""
                 className="w-full h-full object-cover"
               />

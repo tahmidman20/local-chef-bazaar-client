@@ -6,10 +6,12 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import useAuth from "../hooks/useAuth";
 import Loader from "../components/Loader";
+import useDbUser from "../hooks/useDbUser";
 
 const OrderNow = () => {
   const { id } = useParams();
   const { user } = useAuth();
+  const dbUser = useDbUser();
   const navigate = useNavigate();
 
   // load meal data
@@ -48,6 +50,7 @@ const OrderNow = () => {
       totalPrice: Number(totalPrice),
       chefId: meal.chefId,
       chefName: meal.chefName,
+      chefEmail: meal.userEmail,
       userEmail: user.email,
       userAddress: data.userAddress,
       orderTime: new Date(),
@@ -63,7 +66,6 @@ const OrderNow = () => {
     });
 
     if (result.isConfirmed) {
-      // backend call
       await axios.post(`${import.meta.env.VITE_API_URL}/orders`, orderData);
 
       Swal.fire("Success!", "Your order has been placed.", "success");
@@ -157,10 +159,15 @@ const OrderNow = () => {
             <p className="text-red-500 text-sm">Address is required</p>
           )}
         </div>
-
-        <button className="btn btn-secondary md:col-span-2 text-lg">
-          Confirm Order
-        </button>
+        {dbUser?.status === "fraud" ? (
+          <button disabled className="btn btn-error w-full">
+            🚫 Fraud Account
+          </button>
+        ) : (
+          <button className="btn btn-secondary md:col-span-2 text-lg">
+            Confirm Order
+          </button>
+        )}
       </form>
     </div>
   );

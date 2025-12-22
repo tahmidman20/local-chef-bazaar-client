@@ -1,8 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import Loader from "../../components/Loader";
+import { useEffect } from "react";
 
-const ThisMealReviews = ({ meal }) => {
+const ThisMealReviews = ({ meal, setReviewRefetch }) => {
   const foodId = meal._id;
   const {
     data: reviews = [],
@@ -18,7 +19,9 @@ const ThisMealReviews = ({ meal }) => {
       return res.data;
     },
   });
-  refetch();
+  useEffect(() => {
+    setReviewRefetch(() => refetch);
+  }, [refetch, setReviewRefetch]);
 
   if (isLoading) {
     return <Loader></Loader>;
