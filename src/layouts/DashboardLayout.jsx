@@ -11,6 +11,7 @@ import {
 import { Link, NavLink, Outlet } from "react-router";
 import useRole from "../hooks/useRole";
 import Loader from "../components/Loader";
+import PageTransition from "../components/loading/PageTransition";
 
 const DashboardLayout = () => {
   const { role, isLoading } = useRole();
@@ -57,7 +58,9 @@ const DashboardLayout = () => {
           </div>
         </nav>
         {/* Page content here */}
-        <Outlet></Outlet>
+        <PageTransition>
+          <Outlet></Outlet>
+        </PageTransition>
       </div>
       <div className="drawer-side is-drawer-close:overflow-visible">
         <label

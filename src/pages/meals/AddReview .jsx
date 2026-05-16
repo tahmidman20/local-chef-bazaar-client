@@ -3,6 +3,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import useAuth from "../../hooks/useAuth";
 import useDbUser from "../../hooks/useDbUser";
+import Button from "../../components/Button";
 
 const AddReview = ({ meal, refetchReviews }) => {
   const { user } = useAuth();
@@ -83,17 +84,18 @@ const AddReview = ({ meal, refetchReviews }) => {
       />
 
       {dbUser?.status === "fraud" ? (
-        <button disabled className="btn btn-error w-full">
+        <Button disabled variant="dark" fullWidth>
           🚫 Fraud Account
-        </button>
+        </Button>
       ) : (
-        <button
+        <Button
           onClick={handleSubmitReview}
           disabled={loading}
-          className="btn btn-secondary hover:bg-blue-600 w-full"
+          variant="secondary"
+          fullWidth
         >
           {loading ? "Submitting..." : "Submit Review"}
-        </button>
+        </Button>
       )}
     </div>
   );

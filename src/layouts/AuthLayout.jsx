@@ -1,11 +1,12 @@
 import React from "react";
 import { Outlet } from "react-router";
+import PageTransition from "../components/loading/PageTransition";
 
 const AuthLayout = () => {
   return (
-    <div>
+    <PageTransition>
       <Outlet></Outlet>
-    </div>
+    </PageTransition>
   );
 };
 

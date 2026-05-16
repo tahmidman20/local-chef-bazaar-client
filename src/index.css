@@ -1,4 +1,104 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@theme {
+  --font-heading: "Poppins", sans-serif;
+  --font-body: "Inter", sans-serif;
+
+  --color-primary: #FF6B35;
+  --color-secondary: #FFF3E9;
+  --color-accent: #FFB703;
+  --color-dark: #1F1F1F;
+  --color-card-bg: #FFFFFF;
+  --color-soft-bg: #FFF8F3;
+  --color-text-primary: #222222;
+  --color-text-secondary: #666666;
+  --color-border-base: #F1E4D7;
+  --color-success: #22C55E;
+  --color-danger: #EF4444;
+
+  --shadow-primary: 0 10px 30px -10px rgba(255, 107, 53, 0.1);
+  --shadow-hover: 0 20px 40px -15px rgba(255, 107, 53, 0.2);
+}
+
+@layer base {
+  body {
+    @apply font-body text-text-secondary bg-soft-bg;
+    color: var(--color-text-secondary);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading text-text-primary;
+    color: var(--color-text-primary);
+  }
+}
+
+@layer components {
+  /* Enhanced Button Styles with explicit background, text, and hover colors */
+  .bazaar-btn-primary, .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-2 rounded font-semibold transition-all duration-300 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer bg-primary text-white hover:bg-dark hover:text-white shadow-md border-none;
+  }
+
+  .bazaar-btn-secondary, .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-2 rounded font-semibold transition-all duration-300 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer bg-secondary text-primary hover:bg-primary hover:text-white shadow-sm border-none;
+  }
+
+  .bazaar-btn-dark, .btn-neutral {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-2 rounded font-semibold transition-all duration-300 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer bg-dark text-white hover:bg-primary hover:text-white shadow-md border-none;
+  }
+
+  .bazaar-btn-outline, .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-2 rounded font-semibold transition-all duration-300 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-white;
+  }
+
+  .bazaar-btn-icon {
+    @apply flex items-center justify-center w-10 h-10 rounded-full bg-primary text-white transition-all duration-300 hover:bg-dark hover:text-white cursor-pointer border-none;
+  }
+
+  /* Card Styles */
+  .card-premium {
+    @apply bg-white rounded-[2.5rem] p-6 shadow-xl shadow-orange-900/5 border border-border-base/50 transition-all duration-300 hover:shadow-2xl hover:shadow-orange-900/10 hover:-translate-y-1;
+  }
+
+  .card-glass {
+    @apply bg-white/70 backdrop-blur-xl border border-white/40 shadow-xl;
+  }
+
+  /* Input Styles */
+  .input-premium {
+    @apply w-full px-6 py-4 rounded-full bg-white border border-border-base focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-300;
+  }
+
+  /* Section Spacing */
+  .section-spacing {
+    @apply py-16 md:py-24;
+  }
+
+  /* Typography Utilities */
+  .heading-hero {
+    @apply text-5xl md:text-7xl font-bold leading-[1.1] tracking-tight;
+  }
+
+  .heading-section {
+    @apply text-3xl md:text-5xl font-bold leading-tight;
+  }
+
+  .card-title {
+    @apply text-xl font-semibold leading-tight;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-soft-bg;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-primary/20 rounded-full hover:bg-primary/40 transition-colors;
+}
+
 @plugin "daisyui" {
   themes: light --default;
 }
@@ -6,7 +106,6 @@
 @plugin "daisyui/theme" {
   name: "light";
   default: true;
-  --color-primary: #00db54;
-  --color-secondary: #0092b8;
-  --color-cardBg: #6b7280;
+  --color-primary: #FF6B35;
+  --color-secondary: #FFF3E9;
 }

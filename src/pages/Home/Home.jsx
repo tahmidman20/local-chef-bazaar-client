@@ -1,9 +1,13 @@
 import React from "react";
 
 import CustomerReviews from "./CustomerReviews";
-import DailyMeals from "../meals/DailyMeals ";
 import WhyChooseUs from "./WhyChooseUs";
-import Banner from "./Banner ";
+import Hero from "./Hero";
+import FeaturedChefs from "./FeaturedChefs";
+import PopularMeals from "./PopularMeals";
+import TrendingFoods from "./TrendingFoods";
+import HowItWorks from "./HowItWorks";
+import Newsletter from "./Newsletter";
 
 const reviewPromise = fetch(`${import.meta.env.VITE_API_URL}/reviews`).then(
   (res) =>
@@ -12,14 +16,17 @@ const reviewPromise = fetch(`${import.meta.env.VITE_API_URL}/reviews`).then(
     })
 );
 
-console.log(reviewPromise);
 const Home = () => {
   return (
-    <div className="">
-      <Banner></Banner>
-      <DailyMeals></DailyMeals>
-      <CustomerReviews reviewPromise={reviewPromise}></CustomerReviews>
-      <WhyChooseUs></WhyChooseUs>
+    <div className="overflow-x-hidden">
+      <Hero />
+      <FeaturedChefs />
+      <PopularMeals />
+      <WhyChooseUs />
+      <TrendingFoods />
+      <HowItWorks />
+      <CustomerReviews reviewPromise={reviewPromise} />
+      <Newsletter />
     </div>
   );
 };

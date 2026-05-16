@@ -217,7 +217,7 @@ const AddMealForm = () => {
             🚫 Fraud Account
           </button>
         ) : (
-          <button className="btn btn-secondary w-full md:col-span-2 mt-4">
+          <button className="btn btn-primary w-full md:col-span-2 mt-4">
             Add Meal
           </button>
         )}

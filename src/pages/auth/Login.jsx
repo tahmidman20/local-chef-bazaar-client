@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router";
 import useAuth from "../../hooks/useAuth";
 import { toast } from "react-toastify";
 import { saveOrUpdateUser } from "../../utlis";
+import Button from "../../components/Button";
 
 const Login = () => {
   const {
@@ -37,11 +38,11 @@ const Login = () => {
   };
   return (
     <div className="max-w-3xl mx-auto mt-6 bg-gray-100 p-10">
-      <h1 className="text-4xl font-semibold text-center text-secondary">
+      <h1 className="text-4xl font-semibold text-center text-primary">
         Welcome Back
       </h1>
       <form onSubmit={handleSubmit(handleLogin)} className="card-body">
-        <h2 className="text-3xl font-semibold text-center text-secondary">
+        <h2 className="text-3xl font-semibold text-center text-primary">
           Login Now
         </h2>
         <fieldset className="fieldset ">
@@ -77,7 +78,9 @@ const Login = () => {
           <div>
             <a className="link link-hover">Forgot password?</a>
           </div>
-          <button className="btn btn-secondary mt-4 w-full">Login</button>
+          <Button type="submit" variant="primary" fullWidth className="mt-4">
+            Login
+          </Button>
         </fieldset>
         <p>
           Don't have an account?{" "}

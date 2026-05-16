@@ -8,15 +8,23 @@ import "swiper/css/pagination";
 
 const CustomerReviews = ({ reviewPromise }) => {
   const reviews = use(reviewPromise);
-  console.log(reviews);
 
   return (
-    <div className="mb-10 mt-5">
-      <h2 className="text-3xl text-center font-bold text-secondary">
-        Customer Reviews
-      </h2>
-      <div>
-        <>
+    <section className="section-spacing bg-white">
+      <div className="container mx-auto px-4 md:px-8">
+        <div className="text-center mb-16">
+          <span className="inline-block px-4 py-1 rounded-full bg-primary/10 text-primary font-bold text-xs uppercase tracking-wider mb-4">
+            Testimonials
+          </span>
+          <h2 className="heading-section text-text-primary mb-4">
+            Customer Reviews
+          </h2>
+          <p className="text-text-secondary max-w-2xl mx-auto text-lg">
+            Hear from our community about their authentic experiences with our local chefs and delicious homemade meals.
+          </p>
+        </div>
+        
+        <div>
           <Swiper
             loop={true}
             effect={"coverflow"}
@@ -33,27 +41,27 @@ const CustomerReviews = ({ reviewPromise }) => {
               stretch: "0%",
               depth: 100,
               modifier: 1,
-              scale: 0.75,
-              slideShadows: true,
+              scale: 0.85,
+              slideShadows: false,
             }}
             autoplay={{
-              delay: 2000,
+              delay: 3000,
               disableOnInteraction: false,
             }}
-            pagination={true}
+            pagination={{ clickable: true }}
             modules={[EffectCoverflow, Pagination, Autoplay]}
-            className="mySwiper"
+            className="pb-16"
           >
             {reviews?.length > 0 &&
               reviews?.map((review) => (
-                <SwiperSlide key={review.id}>
+                <SwiperSlide key={review.id} className="p-4">
                   <ReviewCard review={review}></ReviewCard>
                 </SwiperSlide>
               ))}
           </Swiper>
-        </>
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 

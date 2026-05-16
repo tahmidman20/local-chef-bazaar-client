@@ -23,11 +23,13 @@ import ManageUsers from "../pages/admin/ManageUsers";
 import ManageRequests from "../pages/admin/ManageRequests";
 import PlatformStatistics from "../pages/admin/PlatformStatistics";
 import DashboardHome from "../pages/admin/DashboardHome";
+import ErrorPage from "../pages/ErrorPage";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     Component: RootLayout,
+    errorElement: <ErrorPage />,
     children: [
       {
         index: true,
@@ -58,6 +60,7 @@ export const router = createBrowserRouter([
   {
     path: "/",
     Component: AuthLayout,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "login",
@@ -71,6 +74,7 @@ export const router = createBrowserRouter([
   },
   {
     path: "dashboard",
+    errorElement: <ErrorPage />,
     element: (
       <PrivateRoute>
         <DashboardLayout></DashboardLayout>

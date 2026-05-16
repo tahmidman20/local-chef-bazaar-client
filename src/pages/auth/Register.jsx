@@ -5,6 +5,7 @@ import useAuth from "../../hooks/useAuth";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { saveOrUpdateUser } from "../../utlis";
+import Button from "../../components/Button";
 
 const Register = () => {
   const {
@@ -64,11 +65,11 @@ const Register = () => {
 
   return (
     <div className="max-w-3xl mx-auto bg-gray-100 p-10 mt-6">
-      <h1 className="text-4xl font-semibold text-center text-secondary">
+      <h1 className="text-4xl font-semibold text-center text-primary">
         Welcome to Local-Cher-Bazaar
       </h1>
       <form onSubmit={handleSubmit(handleRegistration)} className="card-body">
-        <h2 className="text-3xl font-semibold text-center text-secondary">
+        <h2 className="text-3xl font-semibold text-center text-primary">
           Register Now
         </h2>
         <fieldset className="fieldset ">
@@ -156,7 +157,9 @@ const Register = () => {
           <div>
             <a className="link link-hover">Forgot password?</a>
           </div>
-          <button className="btn btn-secondary mt-4 w-full">Register</button>
+          <Button type="submit" variant="primary" fullWidth className="mt-4">
+            Register
+          </Button>
         </fieldset>
         <p>
           Already have an account?{" "}
